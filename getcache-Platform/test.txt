@@ -1,0 +1,24 @@
+USERS:
+buc8alnq912tof7jd1s0buc8alnq912tof7jd1sg
+bucs0cfq912tof7jd220bucs0cfq912tof7jd22g
+
+
+INVESTOR NFT
+bue3jnvq912tof7jd280bue3jnvq912tof7jd28g
+
+GUARANTOR
+budruk7q912tof7jd250budruk7q912tof7jd25g
+
+BUSINESS
+buaqpk3jfrvtvnes1bv0buaqpk3jfrvtvnes1bvg
+
+PRIVI CREDIT:
+buaik8rjfrvlkmra3vp0buaik8rjfrvlkmra3vpg
+
+POD ID:
+buds39nq912mpqh7jf70buds39nq912mpqh7jf7g
+
+INSURANCE ID
+bue5s77q912tn1jfb650bue5s77q912tn1jfb65g
+
+string to time parsedTime, err := time.Parse(time.RFC1123, formattedTime)

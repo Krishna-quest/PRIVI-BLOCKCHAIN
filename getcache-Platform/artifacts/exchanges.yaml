@@ -1,0 +1,11 @@
+name: cache_new-exchanges
+x-type: hlfv1
+description: Cache Network - client definition for exchanges
+version: "1.0"
+client:
+  organization: exchanges
+  credentialStore:
+    path: /tmp/fabric-client-kv-exchanges
+    cryptoStore:
+      path: /tmp/fabric-client-kv-exchanges
+    wallet: wallet-name

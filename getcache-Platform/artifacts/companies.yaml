@@ -1,0 +1,11 @@
+name: cache_new-companies
+x-type: hlfv1
+description: Cache Network - client definition for companies
+version: "1.0"
+client:
+  organization: companies
+  credentialStore:
+    path: /tmp/fabric-client-kv-companies
+    cryptoStore:
+      path: /tmp/fabric-client-kv-companies
+    wallet: wallet-name

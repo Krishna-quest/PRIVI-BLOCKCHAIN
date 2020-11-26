@@ -1,0 +1,28 @@
+{
+    "DataProtocol":"DataProtocolT",
+    "DataProtocolVersion": "v11",
+
+    "CoinBalance":"CoinBalanceT",
+    "CoinBalanceVersion":"v11",
+
+    "TraditionalLending":"TraditionalLendingT",
+    "TraditionalLendingVersion": "v11",
+    
+    "PRIVIcredit": "PRIVIcreditT",
+    "PRIVIcreditVersion": "v12",
+
+    "PodSwapping": "PodSwappingT",
+    "PodSwappingVersion": "v11",
+
+    "PodNFT": "PodNFT",
+    "PodNFTVersion": "v250",
+
+    "PodInsurance": "PodInsurance",
+    "PodInsuranceVersion": "v63",
+
+
+    "channelName":"broadcast",
+    "UserPeers":["peer0.users.com"],
+    "CompanyPeers":["peer0.companies.com"],
+    "ExchangePeers":["peer0.exchanges.com"]
+}

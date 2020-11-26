@@ -1,0 +1,256 @@
+version: "1.0"
+name: cache_new
+x-type: hlfv1
+description: cache
+channels:
+  broadcast:
+    orderers:
+      - orderer0.cache.com
+      - orderer1.cache.com
+      - orderer2.cache.com
+      - orderer3.cache.com
+      - orderer4.cache.com
+    peers:
+      peer0.users.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.users.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer2.users.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer3.users.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.companies.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.companies.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer2.companies.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer3.companies.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.exchanges.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.exchanges.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer2.exchanges.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer3.exchanges.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+organizations:
+  users:
+    mspid: usersMSP
+    peers:
+      - peer3.users.com
+    certificateAuthorities:
+      - ca-users
+    adminPrivateKey:
+      path: artifacts/channel/crypto-config/peerOrganizations/users.com/users/Admin@users.com/msp/keystore/2013cc28f64a355468b7d3c8aaeef84c37a3761ef78aac9960b2b3f3f360bd06_sk
+    signedCert:
+      path: artifacts/channel/crypto-config/peerOrganizations/users.com/users/Admin@users.com/msp/signcerts/Admin@users.com-cert.pem
+  companies:
+    mspid: companiesMSP
+    peers:
+      - peer3.companies.com
+    certificateAuthorities:
+      - ca-companies
+    adminPrivateKey:
+      path: artifacts/channel/crypto-config/peerOrganizations/companies.com/users/Admin@companies.com/msp/keystore/30efd359cca48986e2cedc92cfab9de2340585e4d845c4568f9635b8aa7a2fc9_sk
+    signedCert:
+      path: artifacts/channel/crypto-config/peerOrganizations/companies.com/users/Admin@companies.com/msp/signcerts/Admin@companies.com-cert.pem
+  exchanges:
+    mspid: exchangesMSP
+    peers:
+      - peer3.exchanges.com
+    certificateAuthorities:
+      - ca-exchanges
+    adminPrivateKey:
+      path: artifacts/channel/crypto-config/peerOrganizations/exchanges.com/users/Admin@exchanges.com/msp/keystore/35a7fc9ed67bf1666677aed67f380aff4a0cea3dcdcadb5616a272ea315fe870_sk
+    signedCert:
+      path: artifacts/channel/crypto-config/peerOrganizations/exchanges.com/users/Admin@exchanges.com/msp/signcerts/Admin@exchanges.com-cert.pem
+orderers:
+  orderer0.cache.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer0.cache.com
+      grpc-max-send-message-length: 50000000
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer0.cache.com/tls/ca.crt
+  orderer1.cache.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer1.cache.com
+      grpc-max-send-message-length: 50000000
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer1.cache.com/tls/ca.crt
+  orderer2.cache.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer2.cache.com
+      grpc-max-send-message-length: 50000000
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer2.cache.com/tls/ca.crt
+  orderer3.cache.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer3.cache.com
+      grpc-max-send-message-length: 50000000
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer3.cache.com/tls/ca.crt
+  orderer4.cache.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer4.cache.com
+      grpc-max-send-message-length: 50000000
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer4.cache.com/tls/ca.crt
+peers:
+  peer0.users.com:
+    url: grpcs://localhost:7051
+    eventUrl: grpcs://localhost:7053
+    grpcOptions:
+      ssl-target-name-override: peer0.users.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/users.com/peers/peer0.users.com/tls/ca.crt
+  peer1.users.com:
+    url: grpcs://localhost:7151
+    eventUrl: grpcs://localhost:7153
+    grpcOptions:
+      ssl-target-name-override: peer1.users.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/users.com/peers/peer1.users.com/tls/ca.crt
+  peer2.users.com:
+    url: grpcs://localhost:7251
+    eventUrl: grpcs://localhost:7253
+    grpcOptions:
+      ssl-target-name-override: peer2.users.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/users.com/peers/peer2.users.com/tls/ca.crt
+  peer3.users.com:
+    url: grpcs://localhost:7351
+    eventUrl: grpcs://localhost:7353
+    grpcOptions:
+      ssl-target-name-override: peer3.users.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/users.com/peers/peer3.users.com/tls/ca.crt
+  peer0.companies.com:
+    url: grpcs://localhost:7451
+    eventUrl: grpcs://localhost:7453
+    grpcOptions:
+      ssl-target-name-override: peer0.companies.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/companies.com/peers/peer0.companies.com/tls/ca.crt
+  peer1.companies.com:
+    url: grpcs://localhost:7551
+    eventUrl: grpcs://localhost:7553
+    grpcOptions:
+      ssl-target-name-override: peer1.companies.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/companies.com/peers/peer1.companies.com/tls/ca.crt
+  peer2.companies.com:
+    url: grpcs://localhost:7651
+    eventUrl: grpcs://localhost:7653
+    grpcOptions:
+      ssl-target-name-override: peer2.companies.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/companies.com/peers/peer2.companies.com/tls/ca.crt
+  peer3.companies.com:
+    url: grpcs://localhost:7751
+    eventUrl: grpcs://localhost:7753
+    grpcOptions:
+      ssl-target-name-override: peer3.companies.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/companies.com/peers/peer3.companies.com/tls/ca.crt
+  peer0.exchanges.com:
+    url: grpcs://localhost:7851
+    eventUrl: grpcs://localhost:7853
+    grpcOptions:
+      ssl-target-name-override: peer0.exchanges.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/exchanges.com/peers/peer0.exchanges.com/tls/ca.crt
+  peer1.exchanges.com:
+    url: grpcs://localhost:7951
+    eventUrl: grpcs://localhost:7953
+    grpcOptions:
+      ssl-target-name-override: peer1.exchanges.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/exchanges.com/peers/peer1.exchanges.com/tls/ca.crt
+  peer2.exchanges.com:
+    url: grpcs://localhost:8051
+    eventUrl: grpcs://localhost:8053
+    grpcOptions:
+      ssl-target-name-override: peer2.exchanges.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/exchanges.com/peers/peer2.exchanges.com/tls/ca.crt
+  peer3.exchanges.com:
+    url: grpcs://localhost:8151
+    eventUrl: grpcs://localhost:8153
+    grpcOptions:
+      ssl-target-name-override: peer3.exchanges.com
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/exchanges.com/peers/peer3.exchanges.com/tls/ca.crt
+certificateAuthorities:
+  ca-users:
+    url: https://localhost:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/users.com/ca/ca.users.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca-users
+  ca-companies:
+    url: https://localhost:7154
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/companies.com/ca/ca.companies.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca-companies
+  ca-exchanges:
+    url: https://localhost:7254
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/channel/crypto-config/peerOrganizations/exchanges.com/ca/ca.exchanges.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca-exchanges

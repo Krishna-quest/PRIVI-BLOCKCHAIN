@@ -1,0 +1,699 @@
+version: "2"
+networks:
+  cache:
+    driver:
+      bridge
+services:
+  orderer0:
+    hostname: orderer0.cache.com
+    image: hyperledger/fabric-orderer:1.4.4
+    networks:
+      cache:
+        aliases:
+          - orderer0.cache.com
+    environment:
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFAK_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+      - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer0.cache.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer0.cache.com/tls/:/var/hyperledger/orderer/tls
+    ports:
+      - 7050:7050
+  orderer1:
+    hostname: orderer1.cache.com
+    image: hyperledger/fabric-orderer:1.4.4
+    networks:
+      cache:
+        aliases:
+          - orderer1.cache.com
+    environment:
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFAK_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+      - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer1.cache.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer1.cache.com/tls/:/var/hyperledger/orderer/tls
+    ports:
+      - 7150:7050
+  orderer2:
+    hostname: orderer2.cache.com
+    image: hyperledger/fabric-orderer:1.4.4
+    networks:
+      cache:
+        aliases:
+          - orderer2.cache.com
+    environment:
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFAK_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+      - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer2.cache.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer2.cache.com/tls/:/var/hyperledger/orderer/tls
+    ports:
+      - 7250:7050
+  orderer3:
+    hostname: orderer3.cache.com
+    image: hyperledger/fabric-orderer:1.4.4
+    networks:
+      cache:
+        aliases:
+          - orderer3.cache.com
+    environment:
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFAK_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+      - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer3.cache.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer3.cache.com/tls/:/var/hyperledger/orderer/tls
+    ports:
+      - 7350:7050
+  orderer4:
+    hostname: orderer4.cache.com
+    image: hyperledger/fabric-orderer:1.4.4
+    networks:
+      cache:
+        aliases:
+          - orderer4.cache.com
+    environment:
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - ORDERER_GENERAL_LOGLEVEL=debug
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/orderer.genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
+      - ORDERER_KAFAK_RETRY_SHORTTOTAL=30s
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric
+    command: orderer
+    volumes:
+      - ./channel/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer4.cache.com/msp:/var/hyperledger/orderer/msp
+      - ./channel/crypto-config/ordererOrganizations/cache.com/orderers/orderer4.cache.com/tls/:/var/hyperledger/orderer/tls
+    ports:
+      - 7450:7050
+  CAusers:
+    image: hyperledger/fabric-ca:1.4.4
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-users
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.users.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/c629b0747a3fad9e9858820770309789399733717b3bf9bb1997b6b5657954fc_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.users.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/c629b0747a3fad9e9858820770309789399733717b3bf9bb1997b6b5657954fc_sk
+    ports:
+      - 7054:7054
+    command: sh -c "fabric-ca-server start --ca.certfile
+      /etc/hyperledger/fabric-ca-server-config/ca.users.com-cert.pem
+      --ca.keyfile
+      /etc/hyperledger/fabric-ca-server-config/c629b0747a3fad9e9858820770309789399733717b3bf9bb1997b6b5657954fc_sk
+      -b admin:adminpw -d"
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/users.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    networks:
+      cache:
+        aliases:
+          - ca_peerusers
+    hostname: ca.users.com
+  usersCouch0:
+    image: hyperledger/fabric-couchdb:0.4.15
+    networks:
+      cache:
+        aliases:
+          - userscouchdb0
+    hostname: couchdb0.users.com
+    ports:
+      - 5984:5984
+  peer0_users:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer0.users.com
+    depends_on:
+      - orderer0
+      - usersCouch0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer0.users.com
+      - CORE_PEER_LOCALMSPID=usersMSP
+      - CORE_PEER_ADDRESS=peer0.users.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=usersCouch0:5984
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.users.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.users.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer0.users.com
+    ports:
+      - 7051:7051
+      - 7053:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer0.users.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer0.users.com/tls:/etc/hyperledger/fabric/tls
+  usersCouch1:
+    image: hyperledger/fabric-couchdb:0.4.15
+    networks:
+      cache:
+        aliases:
+          - userscouchdb1
+    hostname: couchdb1.users.com
+    ports:
+      - 6084:5984
+  peer1_users:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer1.users.com
+    depends_on:
+      - orderer0
+      - usersCouch1
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer1.users.com
+      - CORE_PEER_LOCALMSPID=usersMSP
+      - CORE_PEER_ADDRESS=peer1.users.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=usersCouch1:5984
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.users.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.users.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer1.users.com
+    ports:
+      - 7151:7051
+      - 7153:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer1.users.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer1.users.com/tls:/etc/hyperledger/fabric/tls
+  peer2_users:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer2.users.com
+    depends_on:
+      - orderer0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer2.users.com
+      - CORE_PEER_LOCALMSPID=usersMSP
+      - CORE_PEER_ADDRESS=peer2.users.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.users.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer2.users.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer2.users.com
+    ports:
+      - 7251:7051
+      - 7253:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer2.users.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer2.users.com/tls:/etc/hyperledger/fabric/tls
+  peer3_users:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer3.users.com
+    depends_on:
+      - orderer0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer3.users.com
+      - CORE_PEER_LOCALMSPID=usersMSP
+      - CORE_PEER_ADDRESS=peer3.users.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.users.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer3.users.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer3.users.com
+    ports:
+      - 7351:7051
+      - 7353:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer3.users.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/users.com/peers/peer3.users.com/tls:/etc/hyperledger/fabric/tls
+  CAcompanies:
+    image: hyperledger/fabric-ca:1.4.4
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-companies
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.companies.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/9ba16d339ae308af188d0e265bc4617c86dfee7075c1f63f07dd64a793efbf30_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.companies.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/9ba16d339ae308af188d0e265bc4617c86dfee7075c1f63f07dd64a793efbf30_sk
+    ports:
+      - 7154:7054
+    command: sh -c "fabric-ca-server start --ca.certfile
+      /etc/hyperledger/fabric-ca-server-config/ca.companies.com-cert.pem
+      --ca.keyfile
+      /etc/hyperledger/fabric-ca-server-config/9ba16d339ae308af188d0e265bc4617c86dfee7075c1f63f07dd64a793efbf30_sk
+      -b admin:adminpw -d"
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/companies.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    networks:
+      cache:
+        aliases:
+          - ca_peercompanies
+    hostname: ca.companies.com
+  companiesCouch0:
+    image: hyperledger/fabric-couchdb:0.4.15
+    networks:
+      cache:
+        aliases:
+          - companiescouchdb0
+    hostname: couchdb0.companies.com
+    ports:
+      - 6184:5984
+  peer0_companies:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer0.companies.com
+    depends_on:
+      - orderer0
+      - companiesCouch0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer0.companies.com
+      - CORE_PEER_LOCALMSPID=companiesMSP
+      - CORE_PEER_ADDRESS=peer0.companies.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=companiesCouch0:5984
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.companies.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.companies.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer0.companies.com
+    ports:
+      - 7451:7051
+      - 7453:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer0.companies.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer0.companies.com/tls:/etc/hyperledger/fabric/tls
+  companiesCouch1:
+    image: hyperledger/fabric-couchdb:0.4.15
+    networks:
+      cache:
+        aliases:
+          - companiescouchdb1
+    hostname: couchdb1.companies.com
+    ports:
+      - 6284:5984
+  peer1_companies:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer1.companies.com
+    depends_on:
+      - orderer0
+      - companiesCouch1
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer1.companies.com
+      - CORE_PEER_LOCALMSPID=companiesMSP
+      - CORE_PEER_ADDRESS=peer1.companies.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=companiesCouch1:5984
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.companies.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.companies.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer1.companies.com
+    ports:
+      - 7551:7051
+      - 7553:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer1.companies.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer1.companies.com/tls:/etc/hyperledger/fabric/tls
+  peer2_companies:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer2.companies.com
+    depends_on:
+      - orderer0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer2.companies.com
+      - CORE_PEER_LOCALMSPID=companiesMSP
+      - CORE_PEER_ADDRESS=peer2.companies.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.companies.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer2.companies.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer2.companies.com
+    ports:
+      - 7651:7051
+      - 7653:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer2.companies.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer2.companies.com/tls:/etc/hyperledger/fabric/tls
+  peer3_companies:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer3.companies.com
+    depends_on:
+      - orderer0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer3.companies.com
+      - CORE_PEER_LOCALMSPID=companiesMSP
+      - CORE_PEER_ADDRESS=peer3.companies.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.companies.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer3.companies.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer3.companies.com
+    ports:
+      - 7751:7051
+      - 7753:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer3.companies.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/companies.com/peers/peer3.companies.com/tls:/etc/hyperledger/fabric/tls
+  CAexchanges:
+    image: hyperledger/fabric-ca:1.4.4
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-exchanges
+      - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.exchanges.com-cert.pem
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/dd98b0a21d019b98eea97c17ab4d29ed6e5e4fa081b7be9febb9048b16c6a5f2_sk
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.exchanges.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/dd98b0a21d019b98eea97c17ab4d29ed6e5e4fa081b7be9febb9048b16c6a5f2_sk
+    ports:
+      - 7254:7054
+    command: sh -c "fabric-ca-server start --ca.certfile
+      /etc/hyperledger/fabric-ca-server-config/ca.exchanges.com-cert.pem
+      --ca.keyfile
+      /etc/hyperledger/fabric-ca-server-config/dd98b0a21d019b98eea97c17ab4d29ed6e5e4fa081b7be9febb9048b16c6a5f2_sk
+      -b admin:adminpw -d"
+    volumes:
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    networks:
+      cache:
+        aliases:
+          - ca_peerexchanges
+    hostname: ca.exchanges.com
+  exchangesCouch0:
+    image: hyperledger/fabric-couchdb:0.4.15
+    networks:
+      cache:
+        aliases:
+          - exchangescouchdb0
+    hostname: couchdb0.exchanges.com
+    ports:
+      - 6384:5984
+  peer0_exchanges:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer0.exchanges.com
+    depends_on:
+      - orderer0
+      - exchangesCouch0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer0.exchanges.com
+      - CORE_PEER_LOCALMSPID=exchangesMSP
+      - CORE_PEER_ADDRESS=peer0.exchanges.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=exchangesCouch0:5984
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.exchanges.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.exchanges.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer0.exchanges.com
+    ports:
+      - 7851:7051
+      - 7853:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer0.exchanges.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer0.exchanges.com/tls:/etc/hyperledger/fabric/tls
+  peer1_exchanges:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer1.exchanges.com
+    depends_on:
+      - orderer0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer1.exchanges.com
+      - CORE_PEER_LOCALMSPID=exchangesMSP
+      - CORE_PEER_ADDRESS=peer1.exchanges.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.exchanges.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.exchanges.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer1.exchanges.com
+    ports:
+      - 7951:7051
+      - 7953:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer1.exchanges.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer1.exchanges.com/tls:/etc/hyperledger/fabric/tls
+  exchangesCouch1:
+    image: hyperledger/fabric-couchdb:0.4.15
+    networks:
+      cache:
+        aliases:
+          - exchangescouchdb1
+    hostname: couchdb1.exchanges.com
+    ports:
+      - 6484:5984
+  peer2_exchanges:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer2.exchanges.com
+    depends_on:
+      - orderer0
+      - exchangesCouch1
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer2.exchanges.com
+      - CORE_PEER_LOCALMSPID=exchangesMSP
+      - CORE_PEER_ADDRESS=peer2.exchanges.com:7051
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=exchangesCouch1:5984
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer2.exchanges.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer2.exchanges.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer2.exchanges.com
+    ports:
+      - 8051:7051
+      - 8053:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer2.exchanges.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer2.exchanges.com/tls:/etc/hyperledger/fabric/tls
+  peer3_exchanges:
+    image: hyperledger/fabric-peer:1.4.4
+    hostname: peer3.exchanges.com
+    depends_on:
+      - orderer0
+    environment:
+      - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
+      - CORE_LOGGING_LEVEL=DEBUG
+      - CORE_PEER_TLS_ENABLED=true
+      - CORE_PEER_GOSSIP_USELEADERELECTION=true
+      - CORE_PEER_GOSSIP_ORGLEADER=false
+      - CORE_PEER_PROFILE_ENABLED=true
+      - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/fabric/tls/server.crt
+      - CORE_PEER_TLS_KEY_FILE=/etc/hyperledger/fabric/tls/server.key
+      - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/fabric/tls/ca.crt
+      - CORE_PEER_ID=peer3.exchanges.com
+      - CORE_PEER_LOCALMSPID=exchangesMSP
+      - CORE_PEER_ADDRESS=peer3.exchanges.com:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer3.exchanges.com:7051
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_cache
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer3.exchanges.com:7051
+    networks:
+      cache:
+        aliases:
+          - peer3.exchanges.com
+    ports:
+      - 8151:7051
+      - 8153:7053
+    volumes:
+      - /var/run/:/host/var/run/
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer3.exchanges.com/msp:/etc/hyperledger/fabric/msp
+      - ./channel/crypto-config/peerOrganizations/exchanges.com/peers/peer3.exchanges.com/tls:/etc/hyperledger/fabric/tls

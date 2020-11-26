@@ -1,0 +1,13 @@
+{
+    "host": "localhost",
+    "port": "4001",
+    "channelName": "broadcast",
+    "CC_SRC_PATH": "../artifacts",
+    "eventWaitTime": "30000",
+    "admins": [
+        {
+            "username": "admin",
+            "secret": "adminpw"
+        }
+    ]
+}

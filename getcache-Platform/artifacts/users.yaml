@@ -1,0 +1,11 @@
+name: cache_new-users
+x-type: hlfv1
+description: Cache Network - client definition for users
+version: "1.0"
+client:
+  organization: users
+  credentialStore:
+    path: /tmp/fabric-client-kv-users
+    cryptoStore:
+      path: /tmp/fabric-client-kv-users
+    wallet: wallet-name
